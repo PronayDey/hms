@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Chat</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Chat</h1>
+<div id="messages">
+  <p th:each="message : ${messages}" th:text="${message.sender.username + ': ' + message.content}"></p>
+</div>
+<form th:action="@{/chat/send}" method="post">
+  Sender<input type="text" name="senderId" th:value="${messages[0].sender.id}" />
+ Reciever <input type="text" name="receiverId" th:value="${messages[0].receiver.id}" />
+  Enter your Message<input type="text" name="content" />
+  <input type="submit" value="Send" />
+</form>
+</body>
+</html>
